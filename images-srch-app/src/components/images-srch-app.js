@@ -8,12 +8,16 @@ const ImagesSrchApp = () => {
 
     const onUserResponse = async queryStr => {
 
-        const response = await axios.get('https://api.unsplash.com/search/photos', {
-            params: {query: queryStr},
-            headers: {
-                Authorization: 'Client-ID vlPcuQtdQgqaqUD-UlGKgCaSBCIUP8kbcYXJUBq9R0s'
-            }
-        })
+        // const response = await axios.get('https://api.unsplash.com/search/photos', {
+        //     params: {query: queryStr},
+        //     headers: {
+        //         Authorization: 'Client-ID vlPcuQtdQgqaqUD-UlGKgCaSBCIUP8kbcYXJUBq9R0s'
+        //     }
+        // })
+
+        const response = await axios.get('http://localhost:8081/search/photos', {
+            params:{query:queryStr}
+        });
 
         setResponses(response.data.results);
     }
