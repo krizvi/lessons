@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const Photos = require('./models/photos');
 const axios = require('axios');
+const unsplash = require('./apis/unsplash');
 
 const app = express();
 app.use(cors());
@@ -13,7 +14,6 @@ app.get('/search/photos', async (req, res) => {
         let photosDocument = await Photos.findOne({title: term})
 
         if (!photosDocument) {
-            // response = await unsplash.get('/search/photos', {params: {query: term}})
             console.log(`${term} not found in local db`);
             photosDocument = await fetchAndSave(term);
         } else {
@@ -26,12 +26,7 @@ app.get('/search/photos', async (req, res) => {
 });
 
 const fetchAndSave = async term => {
-    response = await axios.get('https://api.unsplash.com/search/photos', {
-        params: {query: term},
-        headers: {
-            Authorization: 'Client-ID McRJL61MPkHa6Z9Z45BceAOCLFbQoopsQ7Wnk7lv9Hw'
-        }
-    })
+    response = await unsplash.get('/search/photos', {params: {query: term}})
     imagesList = createImages(response.data.results);
     return await savePhotos(term, imagesList);
 }
