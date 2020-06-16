@@ -1,52 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Photos = require('./models/photos');
-const axios = require('axios');
-const unsplash = require('./apis/unsplash');
+const searchPhotos = require('./routes/search-photos');
+
+const os = require('os');
 
 const app = express();
+app.set('trust proxy', true)
 app.use(cors());
 
 app.get('/search/photos', async (req, res) => {
-    try {
-        const {query: term} = req.query;
-        let photosDocument = await Photos.findOne({title: term})
-
-        if (!photosDocument) {
-            console.log(`${term} not found in local db`);
-            photosDocument = await fetchAndSave(term);
-        } else {
-            console.log(`${term} found in local db`);
-        }
-        res.status(200).send({results: photosDocument.images});
-    } catch (err) {
-        res.status(500).send({mesage: err});
-    }
+    await searchPhotos(req, res);
 });
 
-const fetchAndSave = async term => {
-    response = await unsplash.get('/search/photos', {params: {query: term}})
-    imagesList = createImages(response.data.results);
-    return await savePhotos(term, imagesList);
-}
-
-const createImages = results => {
-    return results.map(result => ({
-        id: result.id,
-        urls: {small: result.urls.small}
-    }))
-}
-const savePhotos = async (term, images) => {
-    const photos = new Photos({
-        title: term,
-        images
-    });
-    const savedPhotos = await photos.save();
-    return savedPhotos;
-}
-
-const startUp = async () => {
+const bootstrap = async () => {
     try {
         await mongoose.connect('mongodb://localhost:27017/PhotosDB', {
             useNewUrlParser: true,
@@ -55,14 +22,14 @@ const startUp = async () => {
         });
         const port = 8089;
         app.listen(port, () => {
-            console.log('listening on port ', port);
+            console.warn(`serving from ${os.hostname()}. listening on port ${port}`);
         })
     } catch (err) {
         console.error(err);
     }
 }
 
-startUp();
+bootstrap();
 
 
 

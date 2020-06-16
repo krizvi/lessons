@@ -10,7 +10,6 @@ const ImagesSrchApp = () => {
         const response = await photos.get('/search/photos', {
             params: {query: queryStr},
         })
-	console.log(response.data.results);
         setResponses(response.data.results);
     }
 

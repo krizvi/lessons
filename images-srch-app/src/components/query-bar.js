@@ -25,6 +25,7 @@ const QueryBar = (props) => {
 
                 <i className="search icon"/>
             </div>
+            <button className="ui button" type="submit" onClick={handleOnSubmit}>Search</button>
         </form>
     )
 }
