@@ -1,24 +1,16 @@
 import React, {useState} from "react";
 import QueryBar from "./query-bar";
 import ImagesList from "./images-list";
-import axios from 'axios';
+import photos from "../rest-apis/photos";
 
 const ImagesSrchApp = () => {
     const [responses, setResponses] = useState([]);
 
     const onUserResponse = async queryStr => {
-
-        // const response = await axios.get('https://api.unsplash.com/search/photos', {
-        //     params: {query: queryStr},
-        //     headers: {
-        //         Authorization: 'Client-ID vlPcuQtdQgqaqUD-UlGKgCaSBCIUP8kbcYXJUBq9R0s'
-        //     }
-        // })
-
-        const response = await axios.get('http://localhost:8081/search/photos', {
-            params:{query:queryStr}
-        });
-
+        const response = await photos.get('/search/photos', {
+            params: {query: queryStr},
+        })
+	console.log(response.data.results);
         setResponses(response.data.results);
     }
 
