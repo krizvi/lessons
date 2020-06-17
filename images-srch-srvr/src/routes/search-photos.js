@@ -4,7 +4,7 @@ const unsplash = require('../apis/unsplash');
 module.exports = async (req, res) => {
     console.warn(`received request from ${req.ip}`)
     try {
-        const {query: term} = req.query;
+        const {query: term, } = req.query;
         let photosDocument = await Photos.findOne({title: term})
 
         if (!photosDocument) {
