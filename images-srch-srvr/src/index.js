@@ -7,11 +7,9 @@ const os = require('os');
 
 const app = express();
 app.set('trust proxy', true)
-app.use(cors());
 
-app.get('/search/photos', async (req, res) => {
-    await searchPhotos(req, res);
-});
+app.use(cors());
+app.use('/search/photos', searchPhotos);
 
 const bootstrap = async () => {
     try {

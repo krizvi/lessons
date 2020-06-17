@@ -15,7 +15,7 @@ const ImagesSrchApp = () => {
 
     return (
         <div className='ui container'>
-            <QueryBar userResponse={onUserResponse} name='john'/>
+            <QueryBar userResponse={onUserResponse}/>
             <ImagesList images={responses}/>
         </div>
     )

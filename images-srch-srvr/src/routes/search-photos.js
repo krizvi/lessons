@@ -1,10 +1,13 @@
+var express = require('express')
+var router = express.Router()
+
 const Photos = require('../models/photos');
 const unsplash = require('../apis/unsplash');
 
-module.exports = async (req, res) => {
+router.get('/', async (req, res) => {
     console.warn(`received request from ${req.ip}`)
     try {
-        const {query: term, } = req.query;
+        const {query: term,} = req.query;
         let photosDocument = await Photos.findOne({title: term})
 
         if (!photosDocument) {
@@ -17,15 +20,16 @@ module.exports = async (req, res) => {
     } catch (err) {
         res.status(500).send({message: err});
     }
-}
-// raw, full, regular, small, thumb
+})
+
 const fetchAndSave = async term => {
     response = await unsplash.get('/search/photos', {params: {query: term}})
     imagesList = createImages(response.data.results);
     savePhotos(term, imagesList); // this will happen in background, asynchronously
-    return {images: imagesList};
+    return {images: imagesList}; // return images' list and let photos saved in bg
 }
 
+// raw, full, regular, small, thumb
 const createImages = results => {
     return results.map(result => ({
         id: result.id,
@@ -51,3 +55,4 @@ const savePhotos = (term, images) => {
             console.error(err)
         });
 }
+module.exports = router;
