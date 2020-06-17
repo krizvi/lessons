@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
         res.status(500).send({message: err});
     }
 }
-
+// raw, full, regular, small, thumb
 const fetchAndSave = async term => {
     response = await unsplash.get('/search/photos', {params: {query: term}})
     imagesList = createImages(response.data.results);
@@ -33,10 +33,17 @@ const createImages = results => {
     }))
 }
 const savePhotos = (term, images) => {
+
+    if (!images || images.length === 0) {
+        console.warn('no data found to save');
+        return;
+    }
+
     const photos = new Photos({
         title: term,
         images
     });
+
     photos.save()
         .then(data => {
             console.warn(`data saved as ${data.id}`)
