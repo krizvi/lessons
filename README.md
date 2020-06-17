@@ -19,12 +19,12 @@ This course is a handson course. It is focused on evolving web technologies.
 ## TODOs
 
 - June 17, 2020
-    - [] ask all to lean _markdown language_ using [GitHub Pages](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
-    - [] setup mongoose model
-    - [] apply express routes best practices
-    - [] refine logic
-    - [] unsplash get should be awaited
-    - [] mongo save should be async with then, as follows
+    - [X] ask all to lean _markdown language_ using [GitHub Pages](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
+    - [X] setup mongoose model
+    - [X] apply express routes best practices
+    - [x] refine logic
+    - [x] unsplash get should be awaited
+    - [x] mongo save should be async with then, as follows
     
     ```
     const savePhotos = (term, images) => {
@@ -49,5 +49,5 @@ This course is a handson course. It is focused on evolving web technologies.
     ```
     
     - [] show the effect of then vs await using the return from savePhotos
-    - [] ask all o learn about the :EMOJICODE:
-    - [] @jessica :+1: learn GIT life cycle, and teach us how to do a pull request and merge our codes to master branch using git UI
+    - [] ask all to learn about the :EMOJICODE:
+    - [x] @jessica :+1: learn GIT life cycle, and teach us how to do a pull request and merge our codes to master branch using git UI
