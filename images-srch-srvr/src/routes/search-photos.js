@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
 const fetchAndSave = async term => {
     response = await unsplash.get('/search/photos', {params: {query: term}})
     imagesList = createImages(response.data.results);
-    return await savePhotos(term, imagesList);
+    savePhotos(term, imagesList); // this will happen in background, asynchronously
+    return {images: imagesList};
 }
 
 const createImages = results => {
@@ -31,11 +32,15 @@ const createImages = results => {
         urls: {small: result.urls.small}
     }))
 }
-const savePhotos = async (term, images) => {
+const savePhotos = (term, images) => {
     const photos = new Photos({
         title: term,
         images
     });
-    const savedPhotos = await photos.save();
-    return savedPhotos;
+    photos.save()
+        .then(data => {
+            console.warn(`data saved as ${data.id}`)
+        }, err => {
+            console.error(err)
+        });
 }

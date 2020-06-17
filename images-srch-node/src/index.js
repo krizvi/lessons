@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
 const app = express();
 
 app.use(cors());
-
 
 const repo = {};
 
@@ -54,6 +55,26 @@ app.get('/search/photos', async (req, res) => {
     res.send({results: response});
 });
 
-app.listen(8089, () => {
-    console.log('images-srch-node server started listening on port 8089');
-})
+const bootstrap = async () => {
+    try {
+        // connect to mongodb using mongoose
+
+        await mongoose.connect('mongodb://localhost:27017/PhotosDB', {
+            useUnifiedTopology:true,
+            useNewUrlParser: true
+        });
+        console.warn('connected to mongDB successfully. starting the server now..')
+
+
+        // after connecting to mongo. Start the server
+        app.listen(8089, () => {
+            console.log('images-srch-node server started listening on port 8089');
+        })
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+bootstrap();
+

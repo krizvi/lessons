@@ -20,6 +20,9 @@ const bootstrap = async () => {
             useUnifiedTopology: true,
             useCreateIndex: true
         });
+        console.warn(`connected to mongodb, database name 'PhotosDB', successfully`);
+        
+        // after sucessfully connecting to the db, start listening
         const port = 8089;
         app.listen(port, () => {
             console.warn(`serving from ${os.hostname()}. listening on port ${port}`);
