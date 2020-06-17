@@ -14,37 +14,40 @@ This course is a handson course. It is focused on evolving web technologies.
 1. Explain how to program in Javascript ES6 programming language
 2. Explain how to write Web UI using ReactJS
 
-# Agendas
+# Lesson plans
 
-* June 17, 2020
+## TODOs
 
-- setup mongoose model
-- apply express routes best practices
-- refine logic
-- unsplash get should be awaited
-- mongo save should be async with then, as follows
-
-```
-const savePhotos = (term, images) => {
-
-    if (!images || images.length === 0) {
-        console.warn('no data found to save');
-        return;
-    }
-
-    const photos = new Photos({
-        title: term,
-        images
-    });
+- June 17, 2020
+    - [] ask all to lean _markdown language_ using [GitHub Pages](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
+    - [] setup mongoose model
+    - [] apply express routes best practices
+    - [] refine logic
+    - [] unsplash get should be awaited
+    - [] mongo save should be async with then, as follows
     
-    photos.save()
-        .then(data => {
-            console.warn(`data saved as ${data.id}`)
-        }, err => {
-            console.error(err)
+    ```
+    const savePhotos = (term, images) => {
+    
+        if (!images || images.length === 0) {
+            console.warn('no data found to save');
+            return;
+        }
+    
+        const photos = new Photos({
+            title: term,
+            images
         });
-}
-```
-
-- show the effect of then vs await using the return from savePhotos
-- ask Jessica to learn GIT life cycle, and teach us how to do a pull request and merge our codes to master branch using git UI
+        
+        photos.save()
+            .then(data => {
+                console.warn(`data saved as ${data.id}`)
+            }, err => {
+                console.error(err)
+            });
+    }
+    ```
+    
+    - [] show the effect of then vs await using the return from savePhotos
+    - [] ask all o learn about the :EMOJICODE:
+    - [] @jessica :+1: learn GIT life cycle, and teach us how to do a pull request and merge our codes to master branch using git UI
