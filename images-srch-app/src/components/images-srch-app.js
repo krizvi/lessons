@@ -6,16 +6,16 @@ import photos from "../rest-apis/photos";
 const ImagesSrchApp = () => {
     const [responses, setResponses] = useState([]);
 
-    const onUserResponse = async queryStr => {
+    const onSubmit = async (queryStr, imageSize) => {
         const response = await photos.get('/search/photos', {
-            params: {query: queryStr},
+            params: {query: queryStr, size: imageSize},
         })
         setResponses(response.data.results);
     }
 
     return (
         <div className='ui container'>
-            <QueryBar userResponse={onUserResponse}/>
+            <QueryBar onFormSubmit={onSubmit}/>
             <ImagesList images={responses}/>
         </div>
     )

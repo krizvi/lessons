@@ -17,7 +17,8 @@ This course is a handson course. It is focused on evolving web technologies.
 # Lesson plans
 
 ## TODOs
-
+- June 18, 2020
+    - [] modify UI to accept input as the search string plus also image size
 - June 17, 2020
     - [X] ask all to lean _markdown language_ using [GitHub Pages](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
     - [x] ask all to learn about the :EMOJICODE:
