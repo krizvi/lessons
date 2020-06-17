@@ -19,7 +19,7 @@ This course is a handson course. It is focused on evolving web technologies.
 ## TODOs
 
 - June 17, 2020
-    - [] ask all to lean _markdown language_ using [GitHub Pages](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
+    - [x] ask all to lean _markdown language_ using [GitHub Pages](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
     - [] setup mongoose model
     - [] apply express routes best practices
     - [] refine logic
