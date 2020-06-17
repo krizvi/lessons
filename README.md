@@ -47,3 +47,4 @@ const savePhotos = (term, images) => {
 ```
 
 - show the effect of then vs await using the return from savePhotos
+- ask Jessica to learn GIT life cycle, and teach us how to do a pull request and merge our codes to master branch using git UI
