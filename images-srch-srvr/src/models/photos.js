@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 
+/**
+ {
+	title:string,
+	images:[string],
+	date:Date
+ }
+ */
+
 const PhotosSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     images: [{}],
     date: {

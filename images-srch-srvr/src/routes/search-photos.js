@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
     console.warn(`received request from ${req.ip}`)
     try {
         const {query: term,} = req.query;
+        // select * from photos where title='lion'
         let photosDocument = await Photos.findOne({title: term})
 
         if (!photosDocument) {

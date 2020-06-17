@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const searchPhotos = require('./routes/search-photos');
+const helloWorld=require('./routes/hello-world');
 
 const os = require('os');
 
@@ -10,6 +11,8 @@ app.set('trust proxy', true)
 
 app.use(cors());
 app.use('/search/photos', searchPhotos);
+app.use('/helloworld', helloWorld);
+
 
 const bootstrap = async () => {
     try {
