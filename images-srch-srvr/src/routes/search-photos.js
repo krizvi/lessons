@@ -7,15 +7,15 @@ const unsplash = require('../apis/unsplash');
 router.get('/', async (req, res) => {
     console.warn(`received request from ${req.ip}`)
     try {
-        const {query: term,} = req.query;
+        const {query: term, size: imageSize} = req.query;
         // select * from photos where title='lion'
-        let photosDocument = await Photos.findOne({title: term})
+        let photosDocument = await Photos.findOne({title: term, imageSize})
 
         if (!photosDocument) {
-            console.debug(`${term} not found in local db`);
-            photosDocument = await fetchAndSave(term);
+            console.debug(`${term}:${imageSize} not found in local db`);
+            photosDocument = await fetchAndSave(term, imageSize);
         } else {
-            console.debug(`${term} found in local db`);
+            console.debug(`${term}:${imageSize} found in local db`);
         }
         res.status(200).send({results: photosDocument.images});
     } catch (err) {
@@ -23,21 +23,21 @@ router.get('/', async (req, res) => {
     }
 })
 
-const fetchAndSave = async term => {
+const fetchAndSave = async (term, imageSize) => {
     response = await unsplash.get('/search/photos', {params: {query: term}})
-    imagesList = createImages(response.data.results);
-    savePhotos(term, imagesList); // this will happen in background, asynchronously
+    imagesList = createImages(response.data.results, imageSize);
+    savePhotos(term, imageSize, imagesList); // this will happen in background, asynchronously
     return {images: imagesList}; // return images' list and let photos saved in bg
 }
 
 // raw, full, regular, small, thumb
-const createImages = results => {
+const createImages = (results, imageSize) => {
     return results.map(result => ({
         id: result.id,
-        urls: {small: result.urls.small}
+        url: result.urls[imageSize]
     }))
 }
-const savePhotos = (term, images) => {
+const savePhotos = (term, imageSize, images) => {
 
     if (!images || images.length === 0) {
         console.warn('no data found to save');
@@ -46,6 +46,7 @@ const savePhotos = (term, images) => {
 
     const photos = new Photos({
         title: term,
+        imageSize,
         images
     });
 

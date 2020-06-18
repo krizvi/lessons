@@ -14,6 +14,11 @@ const PhotosSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    imageSize: {
+        type: String,
+        default: 'small',
+        unique: true
+    },
     images: [{}],
     date: {
         type: Date,
