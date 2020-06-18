@@ -5,48 +5,39 @@ const QueryBar = ({onFormSubmit}) => {
     const [queryStr, setQueryStr] = useState('');
     const [imageSize, setImageSize] = useState('small');
 
-    const handleQueryOnChange = (event) => {
+    const OnChangeQuery = (event) => {
         setQueryStr(event.target.value)
     }
-    const handleImageSizeOnChange = (event) => {
+    const onChangeImageSize = (event) => {
         setImageSize(event.target.value)
     }
 
-    const handleOnSubmit = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
         onFormSubmit(queryStr, imageSize);
     }
 
     return (
-        <form className="ui form" onSubmit={handleOnSubmit}>
-            <div className="ui icon input">
-                <input
-                    value={queryStr}
-                    type="text"
-                    placeholder="Search..."
-                    onChange={handleQueryOnChange}/>
+        <form className="ui form" onSubmit={onSubmit}>
+                <div className="ui icon input">
+                    <input
+                        value={queryStr}
+                        type="text"
+                        placeholder="Search..."
+                        onChange={OnChangeQuery}/>
 
-                <i className="search icon"/>
-            </div>
-
-            <div className="ui selection dropdown">
-                <input
-                    type="hidden"
-                    value={imageSize}
-                    onChange={handleImageSizeOnChange}
-                />
-                <i className="dropdown icon"></i>
-                <div className="default text">Image Size</div>
-                <div className="menu">
-                    <div className="item" data-value="small">Small</div>
-                    <div className="item" data-value="raw">Raw</div>
-                    <div className="item" data-value="regular">Regular</div>
-                    <div className="item" data-value="full">Full</div>
-                    <div className="item" data-value="thumb">Thumb</div>
+                    <i className="search icon"/>
                 </div>
-            </div>
 
-            <button className="ui button" type="submit" onClick={handleOnSubmit}>Search</button>
+                <select className="ui selection dropdown"
+                        onChange={onChangeImageSize}>
+                    <option value="small">Small</option>
+                    <option value="raw">Raw</option>
+                    <option value="regular">Regular</option>
+                    <option value="full">Full</option>
+                    <option value="thumb">Thumb</option>
+                </select>
+            <button className="ui button" type="submit" onClick={onSubmit}>Search</button>
         </form>
     )
 }

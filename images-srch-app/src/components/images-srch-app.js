@@ -7,6 +7,7 @@ const ImagesSrchApp = () => {
     const [responses, setResponses] = useState([]);
 
     const onSubmit = async (queryStr, imageSize) => {
+        console.log(queryStr, imageSize);
         const response = await photos.get('/search/photos', {
             params: {query: queryStr, size: imageSize},
         })
