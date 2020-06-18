@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
     console.warn(`received request from ${req.ip}`)
     try {
         const {query: term, size: imageSize} = req.query;
+
         // select * from photos where title='lion'
         let photosDocument = await Photos.findOne({title: term, imageSize})
 
@@ -44,11 +45,9 @@ const savePhotos = (term, imageSize, images) => {
         return;
     }
 
-    const photos = new Photos({
-        title: term,
-        imageSize,
-        images
-    });
+    const photos = new Photos(
+        {title: term, images, imageSize}
+    );
 
     photos.save()
         .then(data => {

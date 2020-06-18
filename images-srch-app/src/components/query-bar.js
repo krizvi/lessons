@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 
 const QueryBar = ({onFormSubmit}) => {
-
     const [queryStr, setQueryStr] = useState('');
-    const [imageSize, setImageSize] = useState('small');
+    const [imageSize, setImageSize] = useState('thumb');
 
     const OnChangeQuery = (event) => {
         setQueryStr(event.target.value)
@@ -19,24 +18,24 @@ const QueryBar = ({onFormSubmit}) => {
 
     return (
         <form className="ui form" onSubmit={onSubmit}>
-                <div className="ui icon input">
-                    <input
-                        value={queryStr}
-                        type="text"
-                        placeholder="Search..."
-                        onChange={OnChangeQuery}/>
+            <div className="ui icon input">
+                <input
+                    value={queryStr}
+                    type="text"
+                    placeholder="Search..."
+                    onChange={OnChangeQuery}/>
 
-                    <i className="search icon"/>
-                </div>
+                <i className="search icon"/>
+            </div>
 
-                <select className="ui selection dropdown"
-                        onChange={onChangeImageSize}>
-                    <option value="small">Small</option>
-                    <option value="raw">Raw</option>
-                    <option value="regular">Regular</option>
-                    <option value="full">Full</option>
-                    <option value="thumb">Thumb</option>
-                </select>
+            <select className="ui selection dropdown"
+                    onChange={onChangeImageSize}>
+                <option value="small">Small</option>
+                <option value="raw">Raw</option>
+                <option value="regular">Regular</option>
+                <option value="full">Full</option>
+                <option value="thumb">Thumb</option>
+            </select>
             <button className="ui button" type="submit" onClick={onSubmit}>Search</button>
         </form>
     )

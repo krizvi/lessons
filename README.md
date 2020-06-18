@@ -18,12 +18,12 @@ This course is a handson course. It is focused on evolving web technologies.
 
 ## TODOs
 - June 18, 2020
-    - [] check the assignment
-    - [] walk through the solution of the assignment using my solution
-    - [] inspect mongo collection 'photos' with terminal
+    - [x] check the assignment
+    - [x] walk through the solution of the assignment using my solution
+    - [x] inspect mongo collection 'photos' with terminal
     - [] install mongo-express
     - [] inspect mongo collection 'photos' with mongo-express
-    - [] modify UI to accept input as the search string plus also image size
+    - [x] modify UI to accept input as the search string plus also image size
 - June 17, 2020
     - [x] ask all to lean _markdown language_ using [GitHub Pages](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
     - [x] ask all to learn about the :EMOJICODE:
