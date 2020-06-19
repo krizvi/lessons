@@ -33,9 +33,19 @@ This course is a handson course. It is focused on evolving web technologies.
       > the /titles must return all the titles from mongodb in alphabetically sorted manner
       > the script to extract the items in mongo is 
       > db.photos.find({}, {title:1, _id:0}).sort({title:1}) 
-    - [] write a new React component. Call it calculator. It shoudl have two imputs and operands, 
-         and one drop down input for operator (plus, minus, multiplactio, divide)   and a submit button
-    - [] add a router on the server to receive this and reposnd with the solution                                                           
+    - [] Add a new React JSX component <Calculator/>. Call it calculator. 
+         > In JSX, it should show as <Calculator/>. 
+         It should have two inputs as operands, and one drop down input for operator (+, -, X, /) 
+         and a submit button. When user presses the submit button, the <ImagesSrchApp> should
+         use axios and call the back end server by invoking /calculator/calculate REST endpoint 
+         and display the result as it comes back from the server
+    - [] add a new route on the server. The url of the route is /calculator/calculate?op1=<>&op2=<>&op=. 
+         > Depending on the operator, the server must send the correct response. 
+         For ex: 
+         /calculator/calculate?op1=1&op2=2&op=plus should return (1 + 2 = 3)                                                           
+         /calculator/calculate?op1=6&op2=2&op=multiply should return (6 X 2 = 12)                                                           
+         /calculator/calculate?op1=88&op2=2&op=divide should return (88 / 2 = 44)                                                           
+         /calculator/calculate?op1=956&op2=2&op=minus should return (956 - 2 = 954)                                                           
 - June 19th, 2020
     - [x] show the effect of then vs await using the return from savePhotos
     - [x] install mongo-express (Bryan)
