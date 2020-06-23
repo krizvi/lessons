@@ -17,29 +17,30 @@ This course is a handson course. It is focused on evolving web technologies.
 # Lesson plans
 
 ## TODOs
-- June 2rd, 2020
+- June 24rd, 2020
     - [] docker
-- June 22nd, 2020
+- June 23nd, 2020
     - [] React Router
     - [] implement following routes with React Router
       - [] /search/photos
       - [] /helloworld
       - [] /helloworld/now
       - [] /greet/person
+      - [] /calcultor
       - [] generate/fibonacci
     - [] extend photos app by 
 - June 20th--21st, 2020 (assignment) [optional]
-    - [] write a rest endpoint on images-srch-srvr /titles
+    - [x] write a rest endpoint on images-srch-srvr /titles
       > the /titles must return all the titles from mongodb in alphabetically sorted manner
       > the script to extract the items in mongo is 
       > db.photos.find({}, {title:1, _id:0}).sort({title:1}) 
-    - [] Add a new React JSX component <Calculator/>. Call it calculator. 
+    - [x] Add a new React JSX component <Calculator/>. Call it calculator. 
          > In JSX, it should show as <Calculator/>. 
          It should have two inputs as operands, and one drop down input for operator (+, -, X, /) 
          and a submit button. When user presses the submit button, the <ImagesSrchApp> should
          use axios and call the back end server by invoking /calculator/calculate REST endpoint 
          and display the result as it comes back from the server
-    - [] add a new route on the server. The url of the route is /calculator/calculate?op1=<>&op2=<>&op=. 
+    - [x] add a new route on the server. The url of the route is /calculator/calculate?op1=<>&op2=<>&op=. 
          > Depending on the operator, the server must send the correct response. 
          For ex: 
          /calculator/calculate?op1=1&op2=2&op=plus should return (1 + 2 = 3)                                                           
